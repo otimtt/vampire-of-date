@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vampire-of-date"
+version = "0.2.0"
+description = "TUI defensiva multiplataforma para auditoria local do host e Android via USB/ADB."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+  { name = "Oti" }
+]
+dependencies = [
+  "windows-curses>=2.4.0; platform_system == 'Windows'",
+]
+
+[project.urls]
+Homepage = "https://github.com/otimtt/vampire-of-date"
+Repository = "https://github.com/otimtt/vampire-of-date"
+Issues = "https://github.com/otimtt/vampire-of-date/issues"
+
+[project.scripts]
+vod = "vod.cli:main"
+vampire-of-date = "vod.cli:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
