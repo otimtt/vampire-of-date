@@ -80,36 +80,59 @@ The project is useful for:
 - Python 3.11+
 - A terminal compatible with `curses`
 - Optional platform tools such as `ss`, `systemctl`, `lsusb`, `adb`, or PowerShell
+- **Git** must be installed and available on your system (required for `pip install git+...`)
 
 ## Installation
 
+### Linux / macOS
+
 Install directly from GitHub:
 
-```bash
+```
 pip install git+https://github.com/otimtt/vampire-of-date.git
 ```
 
 Or clone the repository and install it locally:
 
-```bash
+```
 git clone https://github.com/otimtt/vampire-of-date.git
 cd vampire-of-date
 pip install .
 ```
 
+### Windows
+
+On Windows, `python` and `pip` are not always registered in the system `PATH`, even when Python is installed correctly. To avoid `'pip' is not recognized` or `'python' is not recognized` errors, use the **`py` launcher** instead, which ships with the official Windows installer and is registered globally:
+
+```powershell
+py -m pip install git+https://github.com/otimtt/vampire-of-date.git
+```
+
+If this also fails, it usually means Python itself is not installed, or was installed without the launcher. Reinstall it from [python.org](https://www.python.org/downloads/windows/) and make sure the checkbox **"Add python.exe to PATH"** is checked during setup, then open a **new** terminal window.
+
 On Windows, the package installs `windows-curses` automatically.
 
 ## Running
 
-```bash
+### Linux / macOS
+
+```
 vod
 ```
 
 You can also run it as a module from a local clone:
 
-```bash
+```
 python -m vod
 ```
+
+### Windows
+
+```powershell
+py -m vod
+```
+
+If the `vod` / `vampire-of-date` commands are not recognized after installing (common when the Python `Scripts` folder isn't in `PATH`), always fall back to running it as a module with `py -m vod` — it works regardless of `PATH` configuration.
 
 ## Controls
 
