@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from dataclasses import dataclass, field
 
@@ -10,6 +10,7 @@ class Finding:
     title: str
     evidence: str
     recommendation: str
+    fix_key: str = ""
 
 
 @dataclass(slots=True)

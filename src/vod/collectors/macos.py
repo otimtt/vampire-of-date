@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import os
 import platform
@@ -64,6 +64,7 @@ class MacOSCollector(HostCollector):
                     "Firewall do macOS aparenta inativo",
                     f"globalstate={result.stdout or 'vazio'}",
                     "Ative o Application Firewall para reduzir exposicao local.",
+                    fix_key="macos_firewall_enable",
                 )
             )
         return f"firewall: estado {result.stdout or 'desconhecido'}", findings
@@ -82,6 +83,7 @@ class MacOSCollector(HostCollector):
                     "Remote Login habilitado",
                     result.stdout,
                     "Desabilite o SSH remoto se ele nao for necessario.",
+                    fix_key="macos_remote_login_disable",
                 )
             )
         return f"remote login: {result.stdout or 'desconhecido'}", findings

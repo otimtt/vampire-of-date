@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import os
 import platform
@@ -32,12 +32,6 @@ class WindowsCollector(HostCollector):
             usb_note="coleta USB Windows ainda nao implementada",
         )
 
-    def powershell(self, script: str) -> tuple[str, list[Finding]]:
-        if not self.available("powershell"):
-            return "", []
-        result = run_command(["powershell", "-NoProfile", "-Command", script], timeout=20)
-        return result.stdout, []
-
     def check_firewall(self) -> tuple[str, list[Finding]]:
         findings: list[Finding] = []
         if not self.available("powershell"):
@@ -59,6 +53,7 @@ class WindowsCollector(HostCollector):
                     "Algum perfil do Windows Firewall esta desabilitado",
                     result.stdout,
                     "Ative o firewall em todos os perfis que fizerem sentido para o uso do equipamento.",
+                    fix_key="windows_firewall_enable",
                 )
             )
         return f"firewall: {result.stdout or 'desconhecido'}", findings
@@ -84,6 +79,7 @@ class WindowsCollector(HostCollector):
                     "Servico OpenSSH em execucao",
                     "sshd status=Running",
                     "Confirme se o acesso remoto esta realmente necessario.",
+                    fix_key="windows_ssh_disable",
                 )
             )
         return f"OpenSSH: {result.stdout.strip()}", findings

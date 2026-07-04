@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import os
 from pathlib import Path
@@ -91,6 +91,7 @@ class LinuxCollector(HostCollector):
                     "Firewall local nao identificado como ativo",
                     "Nao foi detectado ufw, firewalld ou nftables ativos.",
                     "Ative um firewall local e revise regras para portas expostas.",
+                    fix_key="linux_firewall_enable",
                 )
             )
             return "firewall: inativo ou nao detectado", findings
@@ -117,6 +118,7 @@ class LinuxCollector(HostCollector):
                     "SSH permite login de root",
                     f"PermitRootLogin={permit_root_login}",
                     "Desabilite login direto de root e use sudo a partir de uma conta comum.",
+                    fix_key="linux_ssh_disable",
                 )
             )
         if password_auth == "yes":
@@ -126,6 +128,7 @@ class LinuxCollector(HostCollector):
                     "SSH aceita autenticacao por senha",
                     "PasswordAuthentication=yes",
                     "Prefira autenticacao por chave e reduza superficie para brute force.",
+                    fix_key="linux_ssh_password_disable",
                 )
             )
         return "sshd: ativo", findings
